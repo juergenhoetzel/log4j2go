@@ -30,6 +30,25 @@
   #+begin_src bash
   log4j2go -samefs /
   #+end_src
+* Performance
+
+Log4j-Detector
+#+begin_src text
+time java -jar ~/ghq/github.com/mergebase/log4j-detector/target/log4j-detector-2021.12.17.jar ~/ghq/github.com/
+
+real	0m7.520s
+user	0m7.978s
+sys	0m1.365s
+#+end_src
+
+Log4j2go
+#+begin_src test
+time log4j2go  ~/ghq/github.com/
+
+real	0m0.876s
+user	0m0.368s
+sys	0m0.592s
+#+end_src
 * TODOS
 ** TODO Improve Performance: Use multiple workers
 ** TODO Also search in plain =.class= files
