@@ -5,6 +5,17 @@
   go install github.com/juergenhoetzel/log4j2go/cmd/log4j2go@latest
   #+end_src
 
+* Usage
+
+  Recursively scan filesystem
+  #+begin_src bash
+  log4j2go  /srv/
+  #+end_src
+
+  Recursively scan root filesystem but don't descent in mountpoints
+  #+begin_src bash
+  log4j2go -samefs /
+  #+end_src
 * TODOS
 ** TODO Improve Performance: Use multiple workers
 ** TODO Also search in plain =.class= files
