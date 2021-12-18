@@ -49,6 +49,17 @@ real	0m0.876s
 user	0m0.368s
 sys	0m0.592s
 #+end_src
+* How it works
+
+  =log4j2go= recursively scans the filesystem for =ear=, =war= and
+  =jar= files.  It first checks for =log4j-core/pom.xml= metadata to
+  get the version number.
+
+  If there is no =log4j-core/pom.xml= file it compares the =ZIP=
+  content for well-known Log4J2 filenames (=org/apache/logging/log4j/core= prefix) which
+  content matches the hashes from the Maven Central artefacts.  Each
+  file is also scanned recursively if it contains =jar= files.
+  
 * TODOS
 ** TODO Improve Performance: Use multiple workers
 ** TODO Also search in plain =.class= files
