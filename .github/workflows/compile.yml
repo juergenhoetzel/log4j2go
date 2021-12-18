@@ -1,0 +1,20 @@
+name: "CI"
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+    strategy:
+      matrix:
+        go: [ '1.16', '1.17' ]
+    name: Go ${{ matrix.go }} build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go }}
+      - run: go build cmd/log4j2go/log4j2go.go
