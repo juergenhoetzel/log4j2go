@@ -65,12 +65,8 @@ func main() {
 				continue
 			}
 		} else {
-			r, err := zip.OpenReader(s)
-			if err != nil {
-				log.Fatal(err)
-			}
 			log4j.CheckFile(s, s)
-			r.Close()
 		}
 	}
+	close(jobs)
 }
