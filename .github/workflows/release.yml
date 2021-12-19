@@ -24,4 +24,3 @@ jobs:
         goos: ${{ matrix.goos }}
         goarch: ${{ matrix.goarch }}
         project_path: "cmd/log4j2go"
-        extra_files: LICENSE README.md
