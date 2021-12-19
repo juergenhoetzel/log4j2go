@@ -1,7 +1,7 @@
-name: "Relase"
+name: "Release"
 on:
   release:
-    types: [created]
+    types: [created, published]
 
 jobs:
   releases-matrix:
