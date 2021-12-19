@@ -1,10 +1,12 @@
 [[https://github.com/fsharp/emacs-fsharp-mode/actions][file:https://github.com/juergenhoetzel/log4j2go/workflows/CI/badge.svg]]
 * Installation
 
+  From source:
   #+begin_src bash
   go install github.com/juergenhoetzel/log4j2go/cmd/log4j2go@latest
   #+end_src
 
+  CI build Binaries for Windows, Linux and Darwin:  [[https://github.com/juergenhoetzel/log4j2go/releases][Releases · juergenhoetzel/log4j2go · GitHub]].
 * Usage
 
   Recursively scan filesystem
