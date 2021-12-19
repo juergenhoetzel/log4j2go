@@ -1,7 +1,6 @@
 package main
 
 import (
-	"archive/zip"
 	"io/fs"
 	"log"
 	"os"
@@ -12,11 +11,26 @@ import (
 
 	"flag"
 	"github.com/juergenhoetzel/log4j2go/internal/log4j"
+	"sync"
+	"runtime"
 )
 
 func main() {
 	sameFs := flag.Bool("samefs", false, "dont search in mountpoints")
 	flag.Parse()
+
+	numJobs := runtime.NumCPU()
+	jobs := make(chan string, numJobs)
+	var wg sync.WaitGroup
+	for w := 1; w <= numJobs; w++ {
+		wg.Add(1)
+		go func () {
+			for s := range jobs {
+				log4j.CheckFile(s, s);
+			}
+			wg.Done()
+		}()
+	}
 
 	for _, s := range flag.Args() {
 
@@ -47,7 +61,7 @@ func main() {
 					return nil
 				}
 				if !info.IsDir() && (strings.HasSuffix(info.Name(), ".jar") || strings.HasSuffix(info.Name(), ".war") || strings.HasSuffix(info.Name(), ".ear")) {
-					log4j.CheckFile(path, path)
+					jobs <- path
 				}
 
 				if info.IsDir() && *sameFs && limitFs != nil {
@@ -65,8 +79,9 @@ func main() {
 				continue
 			}
 		} else {
-			log4j.CheckFile(s, s)
+			jobs <- s
 		}
 	}
 	close(jobs)
+	wg.Wait()
 }
