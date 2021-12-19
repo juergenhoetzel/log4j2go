@@ -98,7 +98,7 @@ func JarVersion(r []*zip.File) string {
 	return ""
 }
 
-func CheckFile(zipname, zipfile string) {
+func CheckFile(zipname, zipfile string) string {
 	// check for recursion
 	rdr, err := zip.OpenReader(zipfile)
 	if err != nil {
@@ -118,7 +118,7 @@ func CheckFile(zipname, zipfile string) {
 					log.Fatalf("Failed to read %q: %s\n", zipfile, err)
 				} else {
 					log.Printf("%q does not contain a zip signature", f.Name())
-					return
+					return ""
 				}
 			}
 			if n > 0 {
@@ -131,8 +131,7 @@ func CheckFile(zipname, zipfile string) {
 					tf, err := ioutil.TempFile(os.TempDir(), "log4j2go-*.jar")
 					io.Copy(tf, f)
 					defer os.Remove(tf.Name())
-					CheckFile(zipname+"!"+f.Name(), tf.Name())
-					return
+					return  CheckFile(zipname+"!"+f.Name(), tf.Name())
 				}
 				pos += n
 			}
@@ -154,11 +153,13 @@ func CheckFile(zipname, zipfile string) {
 			}
 			io.Copy(tf, zrdr)
 
-			CheckFile(zipname+"!"+f.Name, tf.Name())
+			return CheckFile(zipname+"!"+f.Name, tf.Name())
 
 		}
 	}
 	if v := JarVersion(rdr.File); v != "" {
 		log.Printf("Found %s in %q", v, zipname)
+		return v
 	}
+	return ""
 }
