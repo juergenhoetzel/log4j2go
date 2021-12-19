@@ -39,6 +39,7 @@ func TestCalculate(t *testing.T) {
 		version    string
 	}{
 		{"https://github.com/elastic/apm-agent-java/releases/download/v1.28.0/elastic-apm-java-aws-lambda-layer-1.28.0.zip", "log4j-core-2.12.1"},
+		{"https://launcher.mojang.com/v1/objects/952438ac4e01b4d115c5fc38f891710c4941df29/server.jar", "log4j-core-2.0-beta9"},
 	}
 	for _, testCase := range testCases {
 		filename, err := DownloadFile(testCase.url);
