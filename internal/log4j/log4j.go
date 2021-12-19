@@ -114,7 +114,12 @@ func CheckFile(zipname, zipfile string) {
 		for {
 			n, err := f.Read(buffer)
 			if err != nil {
-				log.Fatal("Failed to read %q: %s\n", zipfile, err)
+				if err != io.EOF {
+					log.Fatalf("Failed to read %q: %s\n", zipfile, err)
+				} else {
+					log.Printf("%q does not contain a zip signature", f.Name())
+					return
+				}
 			}
 			if n > 0 {
 				index := bytes.Index(buffer, magic)
