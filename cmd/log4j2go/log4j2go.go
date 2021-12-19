@@ -6,10 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"syscall"
-
 	"flag"
+	"github.com/juergenhoetzel/log4j2go/internal/filesystem"
 	"github.com/juergenhoetzel/log4j2go/internal/log4j"
 	"sync"
 	"runtime"
@@ -33,16 +31,11 @@ func main() {
 	}
 
 	for _, s := range flag.Args() {
-
-		stat := syscall.Statfs_t{}
-		var limitFs *syscall.Statfs_t
-		if err := syscall.Statfs(s, &stat); err != nil {
-			// FIXME: UNIX-only
-			log.Printf("statfs %q failed: %v", s, err)
-		} else {
-			limitFs = &stat
+		argfs, err := filesystem.New(s)
+		if err != nil {
+			log.Printf("Failed to get Filesystem for %s: %v\n", s, err)
+			continue
 		}
-
 		file, err := os.Open(s)
 		if err != nil {
 			log.Printf("Failed to open %s: %v\n", s, err)
@@ -64,13 +57,9 @@ func main() {
 					jobs <- path
 				}
 
-				if info.IsDir() && *sameFs && limitFs != nil {
-					stat := syscall.Statfs_t{}
-					syscall.Statfs(path, &stat)
-					if stat.Fsid != limitFs.Fsid {
-						log.Printf("Ignoring mountpoint %q", path)
-						return filepath.SkipDir
-					}
+				if info.IsDir() && *sameFs && !argfs.SameFs(path) {
+					log.Printf("Ignoring mountpoint %q", path)
+					return filepath.SkipDir
 				}
 				return nil
 			})
