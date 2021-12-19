@@ -23,5 +23,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         goos: ${{ matrix.goos }}
         goarch: ${{ matrix.goarch }}
-        build_command: go build cmd/log4j2go/log4j2go.go
+        project_path: "cmd/log4j2go"
         extra_files: LICENSE README.md
