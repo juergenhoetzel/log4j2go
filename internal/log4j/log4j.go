@@ -64,7 +64,7 @@ func JarVersion(r []*zip.File) string {
 					if err == io.EOF {
 						break
 					}
-					log.Fatalf("Error decoding %q, err: %v", f, err)
+					log.Fatalf("Error decoding %q, err: %v", f.Name, err)
 				}
 				if se, ok := t.(xml.StartElement); ok {
 					if se.Name.Local == "groupId" {
@@ -107,7 +107,7 @@ func CheckFile(zipname, zipfile string) {
 		magic := []byte{0x50, 0x4B, 0x3, 0x4}
 		f, err := os.Open(zipfile)
 		if err != nil {
-			log.Fatal("Failed to open %q: %v", zipfile, err)
+			log.Fatalf("Failed to open %q: %v", zipfile, err)
 		}
 		pos := 0
 		buffer := make([]byte, 1024)
@@ -126,7 +126,7 @@ func CheckFile(zipname, zipfile string) {
 				if index != -1 {
 					_, err := f.Seek(int64(pos+index), 0)
 					if err != nil {
-						log.Fatal("Seek to %d in %q faild: ", pos+index, err)
+						log.Fatalf("Seek to %d in %q faild: ", pos+index, err)
 					}
 					tf, err := ioutil.TempFile(os.TempDir(), "log4j2go-*.jar")
 					io.Copy(tf, f)
@@ -137,7 +137,7 @@ func CheckFile(zipname, zipfile string) {
 				pos += n
 			}
 		}
-		log.Println("Failed to open %q as zip: %v", zipfile, ziperr)
+		log.Printf("Failed to open %q as zip: %v", zipfile, ziperr)
 	}
 	defer rdr.Close()
 	for _, f := range rdr.File {
