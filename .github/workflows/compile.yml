@@ -18,4 +18,5 @@ jobs:
         with:
           go-version: ${{ matrix.go }}
       - run: go build cmd/log4j2go/log4j2go.go
+      - run: go test ./...
 
