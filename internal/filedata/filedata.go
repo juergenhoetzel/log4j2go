@@ -1,7 +1,7 @@
 package filedata
 
 var Filehashes = map[string]string{
-
+	"85760fc403aea5010767083f44a709d5": "log4j-core-2.0",
 	"f2516ed3fa137f92199b16d0bf18f27f": "log4j-core-2.0-alpha1",
 	"5317afd99c86face7d29ad85ebb31a21": "log4j-core-2.0-alpha2",
 	"41ec0cb366ce5df2c401733140df0ae1": "log4j-core-2.0-beta1",
@@ -17,7 +17,6 @@ var Filehashes = map[string]string{
 	"141c38bdda6cdf12c4279f04d31f46ad": "log4j-core-2.0-rc2",
 	"406eaadc351a0220e75d9ed05184af87": "log4j-core-2.0.1",
 	"e29bd755877da80e45bb32704604bd84": "log4j-core-2.0.2",
-	"85760fc403aea5010767083f44a709d5": "log4j-core-2.0",
 	"6b155b8d8b99bbe9d6de2c092f461c7f": "log4j-core-2.1",
 	"aebff63721415f85e4eebbef74489414": "log4j-core-2.10.0",
 	"60b371ad9726099ca9c6fa9d2c6b1bb8": "log4j-core-2.11.0",
@@ -34,18 +33,19 @@ var Filehashes = map[string]string{
 	"19b01f557521bf02fa6f49dd2d12dd7f": "log4j-core-2.14.1",
 	"4646702ea2554988f4c8851e5c4ded55": "log4j-core-2.15.0",
 	"53b4d815818961ecfb0aebb5492d31cb": "log4j-core-2.16.0",
+	"0ed7c823be2aa7bbdfd4606ca9157123": "log4j-core-2.17.0",
 	"45fab4a6ec9202efc2b6dbca39254d4f": "log4j-core-2.2",
 	"aa13facbd74d5c65009a27f026cd31e2": "log4j-core-2.3",
-	"92b1ca61eb58cd9048665caa15ffda23": "log4j-core-2.4.1",
 	"0d9fbcd3612bd5abe5e3b2e279b55e20": "log4j-core-2.4",
+	"92b1ca61eb58cd9048665caa15ffda23": "log4j-core-2.4.1",
 	"4baab995021423ef4c6a4454f2820b16": "log4j-core-2.5",
+	"364acfab062a4a357655358fc217a6a9": "log4j-core-2.6",
 	"0d362dc48d88f6f51f6244d0ed2be8f8": "log4j-core-2.6.1",
 	"93f04c976b85c2d1f0c47b5365eee046": "log4j-core-2.6.2",
-	"364acfab062a4a357655358fc217a6a9": "log4j-core-2.6",
 	"7db293ed1c5d9f7b18aa752ae3ba7add": "log4j-core-2.7",
+	"239cba21799585fa5620294aeebf2425": "log4j-core-2.8",
 	"2e64850c41665e89ec433990282e2424": "log4j-core-2.8.1",
 	"04cf28353906aa79da6cba6271b164ba": "log4j-core-2.8.2",
-	"239cba21799585fa5620294aeebf2425": "log4j-core-2.8",
 	"398a3308f47dff3f0d57f7330efa5516": "log4j-core-2.9.0",
 	"1485e9ef0d346632905ee0540ff0f3a4": "log4j-core-2.9.1",
 }
