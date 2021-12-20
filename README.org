@@ -1,4 +1,4 @@
-[[https://github.com/fsharp/emacs-fsharp-mode/actions][file:https://github.com/juergenhoetzel/log4j2go/workflows/CI/badge.svg]]
+[[https://github.com/juergenhoetzel/log4j2go/actions][file:https://github.com/juergenhoetzel/log4j2go/workflows/CI/badge.svg]]
 * Installation
 
   From source:
